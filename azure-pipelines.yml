@@ -17,11 +17,11 @@ steps:
 - script: |
    npm install
    npm run build
-  displayName: 'npm install and build
+  displayName: 'npm install and build'
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Build.DefaultDirectory)'
+    SourceFolder: '$(Build.SourcesDirectory)'
     Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 - task: ArchiveFiles@2
