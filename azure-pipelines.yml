@@ -7,13 +7,17 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  name: Linux
 
 steps:
 - task: NodeTool@0
   inputs:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
+- script: |
+   npm install
+   npm run build
+  displayName: 'npm install and build
 
 - task: CopyFiles@2
   inputs:
@@ -23,10 +27,11 @@ steps:
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: '$(Build.BinariesDirectory)'
-    includeRootFolder: true
+    includeRootFolder: false
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     replaceExistingArchive: true
+    
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
