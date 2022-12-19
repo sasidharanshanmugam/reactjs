@@ -16,7 +16,7 @@ steps:
   displayName: 'Install Node.js'
 - script: |
    npm install
-   npm run build
+   npm run dev-build
   displayName: 'npm install and build'
 
 - task: CopyFiles@2
